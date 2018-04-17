@@ -16,3 +16,5 @@ which tells the HTTP header response that a file will be downloaded so the ancho
 In previous iterations I tried using Github api V3 with it's support for CORS and Jsonp, On the one hand Jsonp wasn't sufficient due to its inherit lack of support for custom HTTP headers (as its a script) which are needed to extract topics for repositories in V3, which I wanted to display on my projects, and on the other hand CORS did not work on some versions of internet explorer due to the reason that HTTP requests in that browser are restricting the [Same Origin Policy](https://en.wikipedia.org/wiki/Same-origin_policy) and will only allow such requests if and only if both ends of the request use HTTPS protocol (which my website lacks), there are some solutions [for example](http://blog.gauffin.org/2014/04/how-to-use-cors-requests-in-internet-explorer-9-and-below/) but they feel like a hack.
 
 So instead I decided to use Github API V4 that uses Grpahql, it uses CORS as well so to support internet explorer 9 I will need to enable HTTPS on my website.
+
+![](https://i.imgur.com/6HAkBib.png)
