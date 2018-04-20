@@ -1,0 +1,215 @@
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.projectsContainer {
+    display: flex;
+   
+    flex-wrap: wrap;
+    flex-direction: row;
+/* height: 100%; */
+
+}
+
+.project{
+    transition: all .2s ease;
+    transform: translateY(0);
+    /* background: transparent; */
+    /* box-shadow: 0 2px 6px 0 hsla(0,0%,0%,0.2); */
+    /* box-shadow: 0 1px 0 #ccc,
+    0 2px 0 #c9c9c9,
+    0 3px 0 #bbb,
+    0 4px 0 #b9b9b9,
+    0 5px 0 #aaa,
+    0 6px 1px rgba(0,0,0,.1),
+    0 0 5px rgba(0,0,0,.1),
+    0 1px 3px rgba(0,0,0,.3),
+    0 3px 5px rgba(0,0,0,.2),
+    0 5px 10px rgba(0,0,0,.25),
+    0 10px 10px rgba(0,0,0,.2),
+    0 20px 20px rgba(0,0,0,.15); */
+    border-top: 6px solid #aa7ecd;
+    margin:10px;
+    max-width: calc(100% / 2 - 20px);
+    min-width: calc(100% / 2 - 20px);
+
+    box-shadow: 5px 5px 25px 0 rgba(46,61,73,.2);
+    border-radius: .375rem;
+}
+
+.project:hover{
+    transition: all .2s ease;
+    transform: translateY(-2px);
+    /* background: transparent; */
+    box-shadow: 0 8px 14px rgba(77,77,77,.1);
+}
+
+.projectLink{
+    color: inherit;
+}
+
+.projectsContainer > *:hover{
+   /* box-shadow: 5px 10px; */
+   
+}
+
+.projectsContainer > *{
+    
+/* justify-content: center; */
+    
+/* text-align: center; */
+    
+flex: 1 1 auto;
+    
+    
+/* min-width: 0; */
+    
+    
+/* overflow-wrap: break-word; */
+    
+/* word-break: break-all; */
+    
+/* max-width: 200px; */
+    
+font-family: 'Source Serif Pro', serif;
+    
+
+    
+/* box-shadow: 5px 10px 5px rgba(77,77,77,0); */
+    /*flex items inside the project container*/
+   /* display: flex;
+   flex-direction: column; */
+    
+background: white;
+}
+
+.projectsContainer .description{
+    font-size: 1.1rem;
+
+    text-align: initial; /*override text center from parent*/
+    /* padding: 18px 5% 20px; */
+    padding-left: 5%;
+    padding-right: 5%;
+    /* min-height: 7vw; */
+    /* word-wrap:break-word; */
+    /* text-overflow: clip; */
+    /* padding-top: 30PX; */
+    /* flex:3 1 auto;; */
+    line-height: 1.6rem;
+    color: #252525;
+    margin-top: -20px;
+    font-family: 'Work Sans', sans-serif;
+    color: #4d4d4d;
+    margin: 1em;
+
+    margin-bottom: 7em;
+    padding-bottom: 10px;
+}
+
+.tags{
+    /* flex:1 1 auto; */
+    display: flex;
+    /* margin: 10px; */
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: flex-start;
+    font-size: 0.9rem;
+    color: #252525;
+
+    padding: 1em;
+    background: hsl(0, 0%, 97%);
+    /* stick to bottom*/
+    position: absolute;
+    bottom: 0px;
+
+    overflow: hidden;
+    max-height: 7em; /*147px*/
+    height: 7em;
+    width:100%;
+}
+
+.tag{
+    margin: 2px;
+    border-radius: 3px;
+    padding: 0.3em 0.9em;
+    /* background-color: white; */
+    border: 1px solid #e1e4e8;
+    color: #4d4d4d;
+    align-self: flex-start;
+}
+
+.project .title{
+    /* flex: 1 1 20px; */
+    /* padding: 10px; */
+    word-wrap:break-word;
+    /* background-color: #FF847C; */
+    /* min-height:  12vh; */
+    /* color: #FF5C5C; */
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    font-variant: all-petite-caps;
+    padding-left: 5%;
+    padding-right: 5%;
+    /* color: #FF847C; */
+    padding-top: 4%;
+    padding-bottom: 4%;
+    padding-left: 3%;
+    padding-right: 3%;
+    color: #4d4d4d;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1.75rem;
+    text-align: center;
+
+    min-height: 10%;
+}
+
+.project :not(.tag)::first-letter{
+    text-transform: uppercase;
+}
+
+.tagsWrapper{
+    background: hsl(0, 0%, 97%);
+    padding-bottom: 3%;
+    padding-top: 5%;
+  }
+  
+  
+.skill{
+    text-align: left;
+    border-bottom: 0.1em solid #dadada;
+  }
+  
+  .skill > *{
+    padding: 1vh;
+  }
+  
+  .skill > th{
+    font-size: 1.9rem;
+    font-weight: 300;
+    padding-left: 10px;
+    padding-bottom: 30px;
+    padding-top: 30px;
+  }
+  
+  .skill > td{
+    font-size: 1.4rem;
+      font-weight: 300;
+      text-align: right;
+      word-spacing: 10px;
+      padding-bottom: 30px;
+      color: #4d4d4d;
+      padding-top: 30px;
+  }
