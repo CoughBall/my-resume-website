@@ -75,20 +75,25 @@
     body .project {
         max-width: 100%;
         min-width: 100%;
+        margin: 0;
+        margin-bottom: 5vw;
     }
     body .info-text>p:nth-child(1),
     body .info-text>p:nth-child(2) {
-        font-size: 5rem;
+        font-size: 4rem;
         font-weight: 200;
     }
     body .info-text>p:nth-child(3) {
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-weight: 300;
         /* margin-top: -30px; */
     }
     body .info-text>p:nth-child(4) {
-        font-size: 2.5rem;
+        font-size: 2rem;
         font-weight: 300;
+    }
+    body .container {
+        width: 100%;
     }
 }
 
@@ -251,8 +256,8 @@ html {
 
 .container {
     width: 90%;
-    padding-left: 5vw;
-    padding-right: 5vw;
+    padding-left: 10vw;
+    padding-right: 10vw;
     /* padding-right: 5vw;
   margin-right: auto;
   margin-left: auto; */
@@ -315,11 +320,11 @@ html {
 }
 
 /**breaks line*/
+
 .linebreak>*:nth-child(n)::after {
     content: '\A';
     white-space: pre;
 }
-
 
 /* TODO: remove either this or #img, they do the same*/
 

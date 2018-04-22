@@ -44,6 +44,7 @@ body {
 .projectLink {
     color: inherit;
 }
+
 .projectsContainer>* {
     flex: 1 1 auto;
     font-family: 'Source Serif Pro', serif;
