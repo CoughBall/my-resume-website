@@ -94,9 +94,10 @@ body {
     padding: 0.3em 0.9em;
     /* background-color: white; */
     border: 1px solid #e1e4e8;
-    color: #656565;
+    color: #868686;
     align-self: flex-start;
     font-weight: 300;
+    font-size: 0.8rem;
 }
 
 .project .title {
@@ -144,7 +145,8 @@ body {
 }
 
 .skill>th {
-    font-size: 1.9rem;
+    color: #4d4d4d;
+    font-size: 1.8rem;
     font-weight: 300;
     padding-left: 10px;
     padding-bottom: 30px;
@@ -152,11 +154,11 @@ body {
 }
 
 .skill>td {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     font-weight: 300;
     text-align: right;
     word-spacing: 10px;
     padding-bottom: 30px;
-    color: #4d4d4d;
+    color: #868686;
     padding-top: 30px;
 }
