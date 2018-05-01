@@ -371,7 +371,7 @@ html {
 .fadein-up-animation > :nth-child(1),
 .fadein-up-animation > :nth-child(2),
 .fadein-up-animation > :nth-child(3){
-    animation-name: fadein;
+    animation-name: fadeup;
     animation-duration: 1s;
     animation-timing-function: ease-in;
     animation-delay: 0s;
