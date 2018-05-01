@@ -177,7 +177,6 @@
     padding-left: 5vw;
     padding-right: 5vw;
     margin-top: 9vw;
-    z-index: 1000;
 }
 
 .content::before {
@@ -304,7 +303,7 @@ html {
 
 .info-text>p:nth-child(4) {
     color: #4d4d4d;
-    font-size: 5rem;
+    font-size: 4rem;
     font-weight: 200;
     margin: 0;
     margin-top: 30px;
@@ -369,7 +368,9 @@ html {
     margin: auto;
 }
 
-.fadein-up-animation {
+.fadein-up-animation > :nth-child(1),
+.fadein-up-animation > :nth-child(2),
+.fadein-up-animation > :nth-child(3){
     animation-name: fadein;
     animation-duration: 1s;
     animation-timing-function: ease-in;
@@ -377,7 +378,25 @@ html {
     animation-direction: normal;
 }
 
-@keyframes fadein {
+.fadein-up-animation > :nth-child(4) {
+    animation-fill-mode: both;
+    animation-name: fade;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+    animation-delay: 1s;
+    animation-direction: normal;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeup {
     0% {
         opacity: 0;
         transform: translateY(30px);

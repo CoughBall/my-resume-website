@@ -23,7 +23,7 @@ body {
 
 .project {
     transition: all .2s ease;
-    transform: translateY(0);
+    position: relative; /* stacking context for the tags to be contained inside the project element instead of transform y 0 */
     border-top: 6px solid #aa7ecd;
     margin: 20px;
     max-width: calc(100% / 3 - 40px);
@@ -76,7 +76,7 @@ body {
     align-content: flex-start;
     font-size: 0.9rem;
     color: #252525;
-    padding: 1em;
+    padding: 0.5em;
     background: hsl(0, 0%, 97%);
     /* stick to bottom*/
     position: absolute;
