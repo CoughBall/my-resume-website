@@ -1,5 +1,5 @@
 # my-resume-website
-The source code for my website resume, responsive for mobile devices. built with pure javascript (ecmascript6) and transpiled with babel for backwards compatibility for older browsers, using HTML5 semantics and CSS3. 
+The source code for my website resume, responsive for mobile devices. built with pure javascript (ecmascript6) from scratch and transpiled with babel for backwards compatibility for older browsers, using HTML5 semantics and CSS3. 
 The website uses github api V4 (Graphql) to extract my github projects using a token that was created with only reading credentials so can only be used for reading (hence why I dont care that it's used in frontend and not in backend for people to see it).
 ##### Resume file
 The resume file is downloaded without opening a new window, at first I tried it using javascript but some internet explorer versions would not support it (forgot the reason for now) so instead I used the HTML5 download attribute, and to support old internet explorer versions I defined in my http server (apache2) the following:
