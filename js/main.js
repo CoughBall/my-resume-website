@@ -1,84 +1,71 @@
-let gitHubJsonResponse;
-let projectsContainer;
-let projectsSection;
-const DOM_READY = 0x1;
-const XHR_READY = 0x2;
-const ALL_READY = 0x3;
-let documentReady = 0;
+let domLoaded;
+let projectsLoaded;
 
-document.addEventListener('DOMContentLoaded', function() {
-  documentReady |= DOM_READY;
-});
+document.addEventListener('DOMContentLoaded', domLoaded = function () { return new Promise((resolve) => { }) });
 
-(function waitFunc() {
-  if (documentReady == ALL_READY) {
-    let infoSection = document.getElementsByClassName('info')[0];
-    infoSection.parentNode.insertBefore(
-      projectsSection,
-      infoSection.nextSibling
-    );
-  } else {
-    setTimeout(waitFunc, 10);
-  }
-})();
-
-(async function load() {
-  var xhr = new XMLHttpRequest();
-  xhr.open(
-    'POST',
-    'https://api.github.com/graphql?access_token=5600d5cc471252c525d11fcba47b29a7b995f331'
-  );
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.setRequestHeader('Accept', 'application/json');
-  xhr.onload = function() {
-    if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 304)) {
-      gitHubJsonResponse = JSON.parse(xhr.responseText);
-      createProjects();
-      documentReady |= XHR_READY;
-    }
-  };
-
-  xhr.onerror = function() {
-    console.log('data returned:', xhr.response);
-  };
-  
-  xhr.send(
-    JSON.stringify({
-      query: ` 
-            query{
-                user(login: "CoughBall") {
-                    repositories(first: 50, isFork: false) {
-                      nodes {
+projectsLoaded = new Promise((resolve, reject) => {
+  const xhr = new XMLHttpRequest();
+  const loginEndPointCredentials = 'https://api.github.com/graphql?access_token=5600d5cc471252c525d11fcba47b29a7b995f331';
+  const queryString =
+    `query{
+      user(login: "CoughBall") {
+          repositories(first: 50, isFork: false) {
+            nodes {
+              name
+              url
+              description
+              repositoryTopics(first: 10) {
+                  edges {
+                    node {
+                      topic {
                         name
-                        url
-                        description
-                        repositoryTopics(first: 10) {
-                            edges {
-                              node {
-                                topic {
-                                  name
-                                }
-                              }
-                            }
-                          }
                       }
                     }
                   }
+                }
             }
-                  `
+          }
+        }
+  }`;
+  xhr.open('POST', loginEndPointCredentials);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('Accept', 'application/json');
+  xhr.onerror = error;
+  xhr.onload = () => {
+    if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 304)) {
+      resolve(createProjects(JSON.parse(xhr.responseText)));
+    }
+    else {
+      error();
+    }
+  };
+  xhr.send(
+    JSON.stringify({
+      query: queryString
     })
   );
-})();
+  function error() {
+    reject(xhr.response);
+  }
+});
 
-function createProjects() {
-  createProjectsSection();
+Promise.all([domLoaded, projectsLoaded]).then((values) => 
+{
+  const infoSection = document.getElementsByClassName('info')[0];
+  infoSection.parentNode.insertBefore(values[1], infoSection.nextSibling);
+}
+).catch((error) => { console.log(new Error(error)) });
+
+function createProjects(gitHubJsonResponse) {
+  let projectsSection = createProjectsSection();
   let projectsContainer = createProjectContainer();
   projectsSection.appendChild(projectsContainer);
-  createProjectsElements(projectsContainer);
+  createProjectsElements(projectsContainer, gitHubJsonResponse);
+  return projectsSection;
 }
 
 function createProjectsSection() {
-  projectsSection = document.createElement('section');
+  let projectsSection = document.createElement('section');
   projectsSection.setAttribute('class', 'container');
   projectsSection.setAttribute('id', 'projects');
   let projectsSectionTitle = document.createElement('h1');
@@ -86,6 +73,7 @@ function createProjectsSection() {
   let textNode = document.createTextNode('Projects');
   projectsSectionTitle.appendChild(textNode);
   projectsSection.appendChild(projectsSectionTitle);
+  return projectsSection;
 }
 
 function createProjectContainer() {
@@ -94,7 +82,7 @@ function createProjectContainer() {
   return projectsContainer;
 }
 
-function createProjectsElements(projectsContainer) {
+function createProjectsElements(projectsContainer, gitHubJsonResponse) {
   let project;
   for (let i = 0; i < gitHubJsonResponse.data.user.repositories.nodes.length; i++) {
     project = gitHubJsonResponse.data.user.repositories.nodes[i];
