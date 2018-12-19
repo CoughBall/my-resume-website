@@ -5,31 +5,7 @@ document.addEventListener('DOMContentLoaded', domLoaded = function () { return n
 
 projectsLoaded = new Promise((resolve, reject) => {
   const xhr = new XMLHttpRequest();
-  const loginEndPointCredentials = 'https://api.github.com/graphql?access_token=5600d5cc471252c525d11fcba47b29a7b995f331';
-  const queryString =
-    `query{
-      user(login: "CoughBall") {
-          repositories(first: 50, isFork: false) {
-            nodes {
-              name
-              url
-              description
-              repositoryTopics(first: 10) {
-                  edges {
-                    node {
-                      topic {
-                        name
-                      }
-                    }
-                  }
-                }
-            }
-          }
-        }
-  }`;
-  xhr.open('POST', loginEndPointCredentials);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.setRequestHeader('Accept', 'application/json');
+  xhr.open('GET', `http://www.eyalherzlich.com:8080/services/projects`);
   xhr.onerror = error;
   xhr.onload = () => {
     if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 304)) {
@@ -39,11 +15,7 @@ projectsLoaded = new Promise((resolve, reject) => {
       error();
     }
   };
-  xhr.send(
-    JSON.stringify({
-      query: queryString
-    })
-  );
+  xhr.send();
   function error() {
     reject(xhr.response);
   }
