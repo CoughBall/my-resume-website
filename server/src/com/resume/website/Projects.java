@@ -49,7 +49,7 @@ public class Projects extends HttpServlet
 				}
 			};
 			String responseBody = httpclient.execute(githubHttpRequest, responseHandler);			
-			HttpResponse.setCharacterEncoding("UTF_8");
+			HttpResponse.setCharacterEncoding(StandardCharsets.UTF_8.name());
 	        out.print(responseBody);
 		} 
 		finally
@@ -64,7 +64,9 @@ public class Projects extends HttpServlet
 		final String ACCESS_TOKEN = "";
 		// setting custom http headers on the http request
 		// http body - graphql query encoded in json format
-		StringEntity messageBody = new StringEntity("{\"query\":\"query{\\n      user(login: \\\"CoughBall\\\") {\\n          repositories(first: 50, isFork: false) {\\n            nodes {\\n              name\\n              url\\n              description\\n              repositoryTopics(first: 10) {\\n                  edges {\\n                    node {\\n                      topic {\\n                        name\\n                      }\\n                    }\\n                  }\\n                }\\n            }\\n          }\\n        }\\n  }\"}");
+		StringEntity messageBody = new StringEntity(
+				   "{ \"query\":\""
+					+ "query{ user (login: CoughBall) { repositories (first: 50, isFork: false) { nodes { name url description repositoryTopics(first: 10) { edges { node { topic { name } } } } } } } } \" }");
 		// uri and headers
 		HttpUriRequest githubHttpRequest = RequestBuilder.post()
 				.setUri("https://api.github.com/graphql?access_token=" + ACCESS_TOKEN)
